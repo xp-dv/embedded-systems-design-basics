@@ -1,5 +1,23 @@
 //* Lab 0 - C Programming Refresher | Part 1 - EDID Decoder and Writer
 
+// TASK #1: Parse the EDID and display the following
+/**
+ * Video Interface
+ * Audio Format Code
+ * Supported Maximum Channels
+ * Supported Sample Frequencies
+ * Supported Bit Depth
+ */
+
+// TASK #2: Write the following data to the EDID block
+/**
+ * Video Interface = DisplayPort
+ * Audio Format Code (Unchanged)
+ * Supported Maximum Channels = 2
+ * Supported Sample Frequencies = 48 kHz (only)
+ * Supported Bit Depth = 24-bit (only)
+ */
+
 //* Local Headers
 #include "edid_decoder.h"
 
