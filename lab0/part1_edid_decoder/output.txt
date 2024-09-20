@@ -1,0 +1,63 @@
+[Running] gcc *.c -o main && .\main
+----Base Block----
+Video Interface: Undefined
+----Extension Block----
+Data Block Collection Size: 49 bytes
+----Data Block 0----
+Size: 4 bytes
+Type: Audio (ADB)
+Audio Format: Linear Pulse-Code Modulation (LPCM)
+Supported Maximum Channels: 6
+Supported Sample Frequencies (kHz): 96 48 44.1 
+Supported Bit Depths (bit): 24 20 16 
+----Data Block 1----
+Size: 14 bytes
+Type: Vendor Specific Data Block (VSDB)
+----Data Block 2----
+Size: 8 bytes
+Type: Vendor Specific Data Block (VSDB)
+----Data Block 3----
+Size: 18 bytes
+Type: Video (VDB)
+----Data Block 4----
+Size: 5 bytes
+Type: Extended
+
+Writing value 0x85 to byte 20...
+  Write Complete
+
+Writing value 0x09 to byte 133...
+  Write Complete
+
+Writing value 0x04 to byte 134...
+  Write Complete
+
+Writing value 0x04 to byte 135...
+  Write Complete
+
+----Base Block----
+Video Interface: DisplayPort
+----Extension Block----
+Data Block Collection Size: 49 bytes
+----Data Block 0----
+Size: 4 bytes
+Type: Audio (ADB)
+Audio Format: Linear Pulse-Code Modulation (LPCM)
+Supported Maximum Channels: 2
+Supported Sample Frequencies (kHz): 48 
+Supported Bit Depths (bit): 24 
+----Data Block 1----
+Size: 14 bytes
+Type: Vendor Specific Data Block (VSDB)
+----Data Block 2----
+Size: 8 bytes
+Type: Vendor Specific Data Block (VSDB)
+----Data Block 3----
+Size: 18 bytes
+Type: Video (VDB)
+----Data Block 4----
+Size: 5 bytes
+Type: Extended
+
+
+[Done] exited with code=0 in 0.158 seconds
