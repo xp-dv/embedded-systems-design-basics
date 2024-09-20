@@ -1,0 +1,8 @@
+[Running] gcc *.c -o main && .\main
+Score: 1
+Score: 2
+Score: 3
+Winner!
+Score: 3
+
+[Done] exited with code=0 in 0.173 seconds
