@@ -1,5 +1,7 @@
-# embedded-systems-design-basics
-Repository of lab projects demonstrating the basics of embedded systems design on the STM32 platform. Topics covered include: GPIO, interrupts, timers, DMA, PWM, common communication protocols, and RTOS.
+# Embedded Systems Design Basics
+Repository of lab projects demonstrating the basics of embedded systems design on the STM32 platform in C. Topics covered include: C programming review, GPIO, interrupts, timers, DMA, PWM, common communication protocols, and RTOS.
+
+All of the code in this repository roughly follows STMicroelectronics Product Line Marketing Manager, Tilen Majerle's [C Code Style Guide](https://github.com/MaJerle/c-code-style).
 
 ### Compilation
 When writing and compiling programs such as those in Lab 0:
