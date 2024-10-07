@@ -101,16 +101,19 @@ int main(void) {
     // // Read using HAL
     // // if (HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)) {
     // Read using Input Data Register
-    if (BUTTON_GPIO_Port->IDR & BUTTON_Pin) { /* IDR & 0x0000_0008U (Check if Pin 3 of the GPIO Port B Input Data Register == 1) */
+    // IDR & 0x0000_0008U (Check if Pin 3 of the GPIO Port B Input Data Register == 1)
+    if (BUTTON_GPIO_Port->IDR & BUTTON_Pin) {
       // // Write using HAL
       // // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
       // Write using Bit Set/Reset Register
-      LED_GPIO_Port->BSRR = LED_Pin; /* BSRR = 0x0000_0010U (Set Pin 4 of the GPIO Port B Bit Set Register) */
+      // GPIOB->BSRR = 0x0000_0010U (Set Pin 4 of the GPIO Port B Bit Set Register)
+      LED_GPIO_Port->BSRR = LED_Pin;
     } else {
       // // Write using HAL
       // // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
       // Write using Bit Set/Reset Register
-      LED_GPIO_Port->BSRR = PIN_RESET_MASK(LED_Pin); /* BSRR = 0x0010_0000U (Reset Pin 4 of the GPIO Port B Bit Reset Register) */
+      // GPIOB->BSRR = 0x0010_0000U (Reset Pin 4 of the GPIO Port B Bit Reset Register)
+      LED_GPIO_Port->BSRR = PIN_RESET_MASK(LED_Pin);
     }
     HAL_Delay(10);
   }
