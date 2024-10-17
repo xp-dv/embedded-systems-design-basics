@@ -67,12 +67,14 @@ void Error_Handler(void);
 #define SWCLK_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_15
 #define VCP_RX_GPIO_Port GPIOA
+#define LD3_Pin GPIO_PIN_3
+#define LD3_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define BAUD_RATE 38400
-#define UART_TIMEOUT 100
-#define BUF_LEN 64
-#define RETURN_BUF_LEN (BUF_LEN + 10) /* BUF_LEN + strlen("Message: \n") */
+#define UART_TIMEOUT HAL_MAX_DELAY
+#define UART_RX_BUF_LEN 12U // message length + 1 byte null terminator '\0'
+#define UART_TX_BUF_LEN (UART_RX_BUF_LEN + 10U) // "Message: \n" = 10 bytes
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

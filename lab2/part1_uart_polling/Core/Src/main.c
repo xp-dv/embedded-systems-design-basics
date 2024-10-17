@@ -92,8 +92,14 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  char uart_buf[BUF_LEN] = { 0 };
-  char uart_return_buf[RETURN_BUF_LEN] = { 0 };
+
+  char uart_rx_buf[UART_RX_BUF_LEN] = { 0 };
+  char uart_tx_buf[UART_TX_BUF_LEN] = { 0 };
+
+  char welcome_buf[] = "Write Anything on Serial Terminal\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t *)welcome_buf, strlen(welcome_buf), 10);
+  memset(welcome_buf, 0, sizeof(welcome_buf));
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -105,12 +111,16 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     /* Receive message, then echo it back */
-    HAL_UART_Receive(&huart2, (uint8_t *)uart_buf, sizeof(uart_buf), UART_TIMEOUT);
-    sprintf(uart_return_buf, "Message: %s\n", uart_buf);
-    HAL_UART_Transmit(&huart2, (uint8_t *)uart_return_buf, (strlen(uart_return_buf) + 1), HAL_MAX_DELAY);
+    HAL_UART_Receive(&huart2, (uint8_t *)uart_rx_buf, (UART_RX_BUF_LEN - 1), UART_TIMEOUT);
+    sprintf(uart_tx_buf, "Message: %s\n", uart_rx_buf);
+    HAL_UART_Transmit(&huart2, (uint8_t *)uart_tx_buf, strlen(uart_tx_buf), HAL_MAX_DELAY);
     /* Clear UART Buffers */
-    memset(uart_buf, 0, sizeof(uart_buf));
-    memset(uart_return_buf, 0, sizeof(uart_return_buf));
+    memset(uart_rx_buf, 0, sizeof(uart_rx_buf));
+    memset(uart_tx_buf, 0, sizeof(uart_tx_buf));
+
+    // Toggle LED to represent busy CPU
+    HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -167,7 +177,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = BAUD_RATE;
+  huart2.Init.BaudRate = 38400;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -193,12 +203,24 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : LD3_Pin */
+  GPIO_InitStruct.Pin = LD3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LD3_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
