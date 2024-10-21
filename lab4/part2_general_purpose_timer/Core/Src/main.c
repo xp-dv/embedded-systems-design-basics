@@ -127,7 +127,7 @@ int main(void)
     }
 
     // Transmit time elapsed
-    sprintf(uart_tx_buf, "Time elapsed: %lu ms\r\n", (end_time - start_time));
+    sprintf(uart_tx_buf, "Time elapsed: %lu us\r\n", (end_time - start_time));
     HAL_UART_Transmit(&huart2, (uint8_t*)uart_tx_buf, strlen(uart_tx_buf), HAL_MAX_DELAY);
 
     // Reset variables
